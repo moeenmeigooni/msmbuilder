@@ -11,7 +11,7 @@ import copy
 import numpy as np
 # ===============================================================================
 # LOCAL IMPORTS:
-from .kcenters import KCenters
+from .kmeans import KMeans
 from ..lumping import PCCA
 from ..msm import MarkovStateModel
 from . import MultiSequenceClusterMixin
@@ -217,8 +217,7 @@ class APM(BaseEstimator):
         return
 
     def _do_split(self, micro_state=None, sub_clus=2):
-        micro_clusterer = KCenters(n_clusters=sub_clus,
-                                   metric=self.metric,
+        micro_clusterer = KMeans(n_clusters=sub_clus,
                                    random_state=0)
         if self.__temp_labels_ is not None:
             sub_X = []
